@@ -1,10 +1,144 @@
 # Árvore AVL
 
+Alunos:
+- Luiz Guilherme Durau Rodrigues
+- Fabrício Guite Pereira
+
+## Explicação
+
+Ambas as árvores tanto a AVL quanto a [binária](https://github.com/luizgdr/ArvoreBinariaBusca)
+compartilham boa parte dos métodos, com a exceção do método balancear, exclusiva
+da AVL, e outros métodos que o método balancear chama para conseguir fazer sua
+execução de forma correta.
+
+As árvores consideram o primeiro elemento inserido como sua raiz, após isso é
+feito a verificação se o próximo elemento é maior ou menor que a raiz, caso ele
+seja maior é colocado à direita, se for menor é posto a esquerda. Assim
+sucessivamente aumentando a árvore a vontade do usuário.
+
+A busca é feita comparando o nodo atual com o número que desejamos encontrar,
+caso esse número seja maior vamos para a direita do nodo, caso contrario para a
+esquerda, assim até chegar ao número desejado.
+
+Quando o método remoção é chamado ele faz a chamada da função pop passando como
+parâmetros: `int n, Node atual, Node pai, Node pai2`. Quando o elemento a ser
+removido é encontrado, a função pop realiza as seguintes ações com base no
+número de filhos do nó a ser removido:
+
+* Se o nó for uma folha, ele é removido simplesmente atualizando as
+referências do pai.
+
+* Se o nó tiver um filho à esquerda ou à direita, o pai do nó é atualizado
+para apontar para o único filho.
+
+* Se o nó tiver ambos os filhos, é necessário encontrar o maior elemento
+na subárvore esquerda e substituir o nó a ser removido por esse valor.
+
+Durante a impressão é impresso para a visualização o nó atual e seus filhos,
+caso existam, a impressão é feita em pré-ordem isso é começa pela raiz, imprime
+o nó atual, depois a subárvore esquerda e, finalmente, a subárvore direita.
+Isso resulta em uma impressão da árvore seguindo a ordem de
+raiz-esquerda-direita.
+
+Partindo agora para a parte exclusiva da Árvore AVL, o balanceamento é sempre
+chamado após a inserção e remoção caso o fator de balanceamento da árvore ou do
+pai do nó inserido/removido for maior que 1 ou menor que -1.
+
+O balanceamento faz a rotação da árvore, podendo ser simples ou dupla, também
+pode ser feita a partir da raiz. Segue abaixo como é feita as rotações simples
+e duplas.
+
+Como exemplo será usado a rotação simples a direita, o mesmo ocorre para o
+caso contrario.
+
+Rotação Simples à Direita
+
+A rotação à direita é usada quando o desequilíbrio ocorre na subárvore esquerda
+de um nó e a subárvore esquerda é mais alta do que a subárvore direita. Para
+corrigir isso, o nó desequilibrado é "puxado" para a direita, tornando o antigo
+filho esquerdo do nó desequilibrado o novo pai desse nó. A antiga subárvore
+direita do novo pai se torna a nova subárvore esquerda do nó desequilibrado.
+
+Passos da Rotação:
+  1. O nó desequilibrado (A) é rotacionado para a direita, tornando-se o novo
+pai.
+  2. O antigo filho direito do novo pai (B) torna-se o novo filho esquerdo do nó
+desequilibrado.
+  3. A subárvore esquerda de B permanece inalterada.
+
+A rotação dupla é necessária quando o desequilíbrio ocorre em um nó, mas uma
+simples rotação não é suficiente para restaurar o equilíbrio. Existem duas
+situações em que uma rotação dupla pode ser usada:
+
+  * rotação à direita seguida de rotação à esquerda
+  * rotação à esquerda seguida de rotação à direita
+
+Por fim segue abaixo um exemplo de saída para a árvore AVL (lembrando que no
+código fornecido os números são inseridos aleatoriamente, o exemplo abaixo serve
+apenas para demonstração.)
+
+Entrada:
+        arvore.inserir(100);
+        arvore.inserir(56);
+        arvore.inserir(32);
+        arvore.inserir(80);
+        arvore.inserir(127);
+        arvore.inserir(115);
+        arvore.remover(32);
+        arvore.inserir(85);
+        arvore.inserir(130);
+        arvore.inserir(82);
+        arvore.inserir(90);
+        arvore.inserir(120);
+        arvore.remover(80);
+        arvore.inserir(95);
+        arvore.remover(127);
+        arvore.inserir(40);
+        arvore.inserir(68);
+        arvore.remover(56);
+        arvore.remover(40);
+        arvore.remover(82);
+
+Saída:
+        Arvore:
+        Valor: 100 arvoreavl.Node@3feba861
+        Esquerda: 85
+        Direita: 120
+
+        Valor: 85 arvoreavl.Node@30dae81
+        Esquerda: 68
+        Direita: 90
+
+        Valor: 68 arvoreavl.Node@1b2c6ec2
+        Esquerda: null
+        Direita: null
+
+        Valor: 90 arvoreavl.Node@65b3120a
+        Esquerda: null
+        Direita: 95
+
+        Valor: 95 arvoreavl.Node@6f539caf
+        Esquerda: null
+        Direita: null
+
+        Valor: 120 arvoreavl.Node@79fc0f2f
+        Esquerda: 115
+        Direita: 130
+
+        Valor: 115 arvoreavl.Node@50040f0c
+        Esquerda: null
+        Direita: null
+
+        Valor: 130 arvoreavl.Node@2dda6444
+        Esquerda: null
+        Direita: null
+
+
+## Testes de performance
+
 CPU usado: AMD Ryzen 7 4800H with Radeon Graphics (16) @ 2.900GHz
 
 Memória RAM: 16 GB @ 32000 MHz
-
-## Testes de performance
 
 Os resultados dos testes de performance foram obtidos atraves do comando
 de linux `/usr/bin/time`. Exemplo de output:
@@ -107,7 +241,6 @@ _Notas: memória usada leva em conta todo o processo do java_
         Remoção demorou 3 ms
 
 ## Análise dos resultados
-
 
 Agora, ao observarmos os resultados, podemos perceber que a variação não
 parece seguir uma lógica, pois, mesmo aumentando a quantidade de números
