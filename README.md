@@ -1,5 +1,8 @@
 # Árvore AVL
 
+CPU usado: AMD Ryzen 7 4800H with Radeon Graphics (16) @ 2.900GHz
+Memória RAM: 16 GB @ 32000 MHz
+
 ## Testes de performance
 
 Os resultados dos testes de performance foram obtidos atraves do comando
