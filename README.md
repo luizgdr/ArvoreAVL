@@ -78,6 +78,7 @@ código fornecido os números são inseridos aleatoriamente, o exemplo abaixo se
 apenas para demonstração.)
 
 Entrada:
+
         arvore.inserir(100);
         arvore.inserir(56);
         arvore.inserir(32);
@@ -100,6 +101,7 @@ Entrada:
         arvore.remover(82);
 
 Saída:
+
         Arvore:
         Valor: 100 arvoreavl.Node@3feba861
         Esquerda: 85
