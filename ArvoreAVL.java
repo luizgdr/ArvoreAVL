@@ -276,7 +276,7 @@ public class ArvoreAVL {
         else
             return;
         for (int i = 0; i < num; i++) {
-            arvore.inserir(rand.nextInt(25000) + 25000);
+            arvore.inserir(rand.nextInt(50000));
         }
         /*
         arvore.inserir(100);
