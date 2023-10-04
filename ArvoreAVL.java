@@ -270,14 +270,33 @@ public class ArvoreAVL {
         ArvoreAVL arvore = new ArvoreAVL();
         /* Quantidade de números aleatórios a serem gerados,
          * passado como argumento */
-        int num;
+        int num, ultimoAleatorio = 0;
         if (args.length == 1)
             num = Integer.parseInt(args[0]);
         else
             return;
+        System.out.println("Gerando " + num + " números aleatórios");
+        long inicio = System.currentTimeMillis();
         for (int i = 0; i < num; i++) {
-            arvore.inserir(rand.nextInt(50000));
+            ultimoAleatorio = rand.nextInt(50000);
+            arvore.inserir(ultimoAleatorio);
         }
+        long fim = System.currentTimeMillis();
+        System.out.println("Inserção demorou " + (fim - inicio) + " ms");
+        System.out.println("Balanceamento da árvore: " +
+                arvore.balanceamento(arvore.raiz));
+
+        System.out.println("Buscando o último número inserido: " + ultimoAleatorio);
+        inicio = System.currentTimeMillis();
+        arvore.buscar(ultimoAleatorio);
+        fim = System.currentTimeMillis();
+        System.out.println("Busca demorou " + (fim - inicio) + " ms");
+
+        System.out.println("Removendo o último número inserido: " + ultimoAleatorio);
+        inicio = System.currentTimeMillis();
+        arvore.remover(ultimoAleatorio);
+        fim = System.currentTimeMillis();
+        System.out.println("Remoção demorou " + (fim - inicio) + " ms");
         /*
         arvore.inserir(100);
         arvore.inserir(56);
@@ -304,7 +323,5 @@ public class ArvoreAVL {
         System.out.println("Arvore:");
         arvore.imprimir_preordem();
         */
-        System.out.println("Balanceamento da árvore: " +
-                arvore.balanceamento(arvore.raiz));
     }
 }
