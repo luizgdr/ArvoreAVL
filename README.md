@@ -48,10 +48,10 @@ O balanceamento faz a rotação da árvore, podendo ser simples ou dupla, també
 pode ser feita a partir da raiz. Segue abaixo como é feita as rotações simples
 e duplas.
 
+### Rotações
+
 Como exemplo será usado a rotação simples a direita, o mesmo ocorre para o
 caso contrario.
-
-Rotação Simples à Direita
 
 A rotação à direita é usada quando o desequilíbrio ocorre na subárvore esquerda
 de um nó e a subárvore esquerda é mais alta do que a subárvore direita. Para
@@ -72,6 +72,8 @@ situações em que uma rotação dupla pode ser usada:
 
   * rotação à direita seguida de rotação à esquerda
   * rotação à esquerda seguida de rotação à direita
+
+### Exemplo
 
 Por fim segue abaixo um exemplo de saída para a árvore AVL (lembrando que no
 código fornecido os números são inseridos aleatoriamente, o exemplo abaixo serve
